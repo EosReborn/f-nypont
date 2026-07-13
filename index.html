@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title>Anna Fénypont Kozmetika | Árlista & Bejelentkezés</title>
+<style>
+  :root{
+    --pink-deep:#d6336c;
+    --pink:#ff6f9c;
+    --pink-light:#ffc2d9;
+    --pink-pale:#ffeef4;
+    --purple:#a94ba0;
+    --gold:#e8b96a;
+    --cream:#fff7f9;
+    --text:#5a2340;
+    --text-soft:#8a5270;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    background:var(--cream);
+    color:var(--text);
+    line-height:1.5;
+    overflow-x:hidden;
+  }
+  a{color:inherit; text-decoration:none;}
+
+  /* HERO */
+  .hero{
+    position:relative;
+    background:linear-gradient(160deg, var(--pink-deep) 0%, var(--purple) 55%, #7a2f6e 100%);
+    padding:48px 20px 90px;
+    text-align:center;
+    color:#fff;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute;
+    top:-60px; right:-60px;
+    width:220px; height:220px;
+    background:radial-gradient(circle, rgba(255,255,255,0.18), transparent 70%);
+    border-radius:50%;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;
+    bottom:-80px; left:-40px;
+    width:260px; height:260px;
+    background:radial-gradient(circle, rgba(255,255,255,0.12), transparent 70%);
+    border-radius:50%;
+  }
+  .hero-inner{position:relative; z-index:2;}
+  .logo-badge{
+    display:inline-block;
+    font-family:'Brush Script MT', cursive;
+    font-size:2.6rem;
+    letter-spacing:1px;
+    color:#fff;
+    text-shadow:0 2px 12px rgba(0,0,0,0.25);
+  }
+  .logo-sub{
+    display:block;
+    font-family:'Segoe UI', sans-serif;
+    font-size:0.72rem;
+    letter-spacing:5px;
+    font-weight:600;
+    color:var(--pink-light);
+    margin-top:2px;
+  }
+  .hero h1{
+    font-size:1.9rem;
+    margin-top:18px;
+    font-weight:700;
+    letter-spacing:0.5px;
+  }
+  .hero p.tag{
+    margin-top:8px;
+    font-size:1rem;
+    font-style:italic;
+    color:var(--pink-light);
+  }
+  .hero-cta{
+    margin-top:26px;
+    display:flex;
+    gap:10px;
+    justify-content:center;
+    flex-wrap:wrap;
+  }
+  .btn{
+    display:inline-block;
+    padding:13px 26px;
+    border-radius:999px;
+    font-weight:700;
+    font-size:0.95rem;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn-primary{
+    background:linear-gradient(135deg,#fff, var(--pink-light));
+    color:var(--pink-deep);
+    box-shadow:0 8px 20px rgba(0,0,0,0.25);
+  }
+  .btn-primary:active{transform:scale(0.97);}
+  .btn-outline{
+    border:2px solid rgba(255,255,255,0.7);
+    color:#fff;
+  }
+  .wave{
+    position:absolute;
+    left:0; right:0; bottom:-1px;
+    line-height:0;
+  }
+  .wave svg{width:100%; height:60px; display:block;}
+
+  /* NAV DOTS (quick links) */
+  .quicknav{
+    display:flex;
+    overflow-x:auto;
+    gap:10px;
+    padding:16px 16px 10px;
+    background:var(--cream);
+    position:sticky;
+    top:0;
+    z-index:50;
+    box-shadow:0 4px 12px rgba(214,51,108,0.08);
+  }
+  .quicknav::-webkit-scrollbar{display:none;}
+  .quicknav a{
+    flex:0 0 auto;
+    background:#fff;
+    border:1.5px solid var(--pink-light);
+    color:var(--pink-deep);
+    padding:8px 16px;
+    border-radius:999px;
+    font-size:0.82rem;
+    font-weight:600;
+    white-space:nowrap;
+  }
+
+  section{padding:34px 18px;}
+  .section-title{
+    text-align:center;
+    margin-bottom:22px;
+  }
+  .section-title .icon{font-size:1.8rem;}
+  .section-title h2{
+    font-size:1.5rem;
+    color:var(--pink-deep);
+    margin-top:4px;
+    font-weight:800;
+    letter-spacing:0.3px;
+  }
+  .section-title p{
+    font-style:italic;
+    color:var(--text-soft);
+    font-size:0.92rem;
+    margin-top:4px;
+  }
+
+  /* CARD */
+  .card{
+    background:#fff;
+    border-radius:20px;
+    padding:18px 16px;
+    box-shadow:0 6px 22px rgba(214,51,108,0.10);
+    margin-bottom:16px;
+    border:1px solid #ffe1ec;
+  }
+
+  /* LASH TABLE */
+  .lash-table{width:100%; border-collapse:collapse; font-size:0.85rem;}
+  .lash-table th{
+    background:var(--pink-pale);
+    color:var(--pink-deep);
+    padding:8px 4px;
+    font-size:0.68rem;
+    font-weight:700;
+    text-align:center;
+    border-radius:8px;
+  }
+  .lash-table td{
+    padding:10px 4px;
+    text-align:center;
+    border-bottom:1px solid #fbe3ec;
+  }
+  .lash-table td.dim{
+    font-weight:800;
+    color:#fff;
+    background:linear-gradient(135deg,var(--pink), var(--pink-deep));
+    border-radius:10px;
+    font-size:1rem;
+  }
+  .lash-table td.price{font-weight:700; color:var(--text);}
+  .removal-note{
+    margin-top:14px;
+    text-align:center;
+    background:var(--pink-pale);
+    border-radius:14px;
+    padding:12px;
+    font-size:0.9rem;
+  }
+  .removal-note b{color:var(--pink-deep); font-size:1.05rem;}
+
+  /* PRICE LIST ROWS */
+  .price-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 4px;
+    border-bottom:1px dashed #fbdce9;
+    font-size:0.92rem;
+  }
+  .price-row:last-child{border-bottom:none;}
+  .price-row .name{color:var(--text); font-weight:500;}
+  .price-row .price{color:var(--pink-deep); font-weight:800; white-space:nowrap; margin-left:10px;}
+
+  /* TREATMENT CARD */
+  .treat-card{
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+    background:#fff;
+    border-radius:16px;
+    padding:14px;
+    margin-bottom:12px;
+    box-shadow:0 4px 16px rgba(214,51,108,0.08);
+    border:1px solid #ffe1ec;
+  }
+  .treat-emoji{
+    font-size:1.6rem;
+    background:var(--pink-pale);
+    border-radius:50%;
+    width:46px; height:46px;
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+  }
+  .treat-body h3{font-size:1rem; color:var(--pink-deep); font-weight:700;}
+  .treat-body .price-tag{
+    display:inline-block;
+    margin:2px 0 4px;
+    font-weight:800;
+    color:var(--purple);
+  }
+  .treat-body p{font-size:0.85rem; color:var(--text-soft);}
+
+  .grid-2{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+  }
+
+  .bg-alt{background:linear-gradient(180deg, var(--pink-pale), #fff);}
+
+  /* CONTACT */
+  .contact{
+    background:linear-gradient(160deg, var(--purple), var(--pink-deep));
+    color:#fff;
+    border-radius:24px;
+    margin:10px 18px 30px;
+    padding:28px 20px;
+    text-align:center;
+  }
+  .contact h2{font-size:1.4rem; margin-bottom:6px;}
+  .contact p.sub{font-style:italic; color:var(--pink-light); margin-bottom:20px;}
+  .contact-list{display:flex; flex-direction:column; gap:12px; text-align:left; max-width:340px; margin:0 auto;}
+  .contact-item{
+    display:flex; align-items:center; gap:12px;
+    background:rgba(255,255,255,0.1);
+    padding:12px 14px;
+    border-radius:14px;
+  }
+  .contact-item .ic{font-size:1.3rem; width:28px; text-align:center;}
+  .contact-item .lbl{font-size:0.7rem; text-transform:uppercase; letter-spacing:1px; color:var(--pink-light); opacity:0.9;}
+  .contact-item .val{font-weight:700; font-size:0.98rem;}
+
+  .footer-note{
+    text-align:center;
+    padding:18px;
+    font-size:0.78rem;
+    color:var(--text-soft);
+  }
+  .footer-note .heart{color:var(--pink-deep);}
+
+  /* STICKY CTA */
+  .sticky-cta{
+    position:fixed;
+    bottom:0; left:0; right:0;
+    background:#fff;
+    box-shadow:0 -6px 20px rgba(214,51,108,0.18);
+    padding:10px 16px;
+    display:flex;
+    gap:10px;
+    z-index:100;
+  }
+  .sticky-cta a{
+    flex:1;
+    text-align:center;
+    padding:13px 10px;
+    border-radius:999px;
+    font-weight:700;
+    font-size:0.9rem;
+  }
+  .sticky-cta .call{
+    background:linear-gradient(135deg, var(--pink), var(--pink-deep));
+    color:#fff;
+    box-shadow:0 4px 14px rgba(214,51,108,0.35);
+  }
+  .sticky-cta .insta{
+    border:1.5px solid var(--pink-deep);
+    color:var(--pink-deep);
+  }
+  body{padding-bottom:74px;}
+
+  @media (min-width:600px){
+    .hero h1{font-size:2.3rem;}
+    section{padding:44px 40px;}
+    .grid-2{grid-template-columns:1fr 1fr;}
+  }
+</style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-inner">
+      <span class="logo-badge">Anna<span class="logo-sub">FÉNYPONT KOZMETIKA</span></span>
+      <h1>Szépség, ami belülről ragyog 💕</h1>
+      <p class="tag">Műszempilla · Gyantázás · Kezelések · Smink</p>
+      <div class="hero-cta">
+        <a href="tel:+36205929777" class="btn btn-primary">📞 Bejelentkezés</a>
+        <a href="#arlista" class="btn btn-outline">Árlista megtekintése</a>
+      </div>
+    </div>
+    <div class="wave">
+      <svg viewBox="0 0 500 60" preserveAspectRatio="none"><path d="M0,30 C150,60 350,0 500,30 L500,60 L0,60 Z" fill="#fff7f9"></path></svg>
+    </div>
+  </header>
+
+  <!-- QUICK NAV -->
+  <nav class="quicknav">
+    <a href="#lash">Szempilla</a>
+    <a href="#waxing">Gyantázás</a>
+    <a href="#tint">Festés</a>
+    <a href="#treat">Kezelések</a>
+    <a href="#massage">Masszázs</a>
+    <a href="#makeup">Smink</a>
+    <a href="#kapcsolat">Kapcsolat</a>
+  </nav>
+
+  <main id="arlista">
+
+    <!-- LASH EXTENSIONS -->
+    <section id="lash">
+      <div class="section-title">
+        <div class="icon">💫</div>
+        <h2>Műszempilla Építés</h2>
+        <p>UV technológiával</p>
+      </div>
+      <div class="card">
+        <table class="lash-table">
+          <tr>
+            <th></th><th>Újszett</th><th>3 hetes<br>töltés</th><th>4 hetes<br>töltés</th>
+          </tr>
+          <tr><td class="dim">1D</td><td class="price">12.000 Ft</td><td class="price">9.500 Ft</td><td class="price">10.500 Ft</td></tr>
+          <tr><td class="dim">2D</td><td class="price">14.000 Ft</td><td class="price">11.500 Ft</td><td class="price">12.500 Ft</td></tr>
+          <tr><td class="dim">3D</td><td class="price">16.000 Ft</td><td class="price">13.500 Ft</td><td class="price">14.500 Ft</td></tr>
+          <tr><td class="dim">4D</td><td class="price">18.000 Ft</td><td class="price">15.500 Ft</td><td class="price">16.500 Ft</td></tr>
+        </table>
+        <div class="removal-note">Leoldás: <b>4.500 Ft</b></div>
+      </div>
+    </section>
+
+    <!-- WAXING -->
+    <section id="waxing" class="bg-alt">
+      <div class="section-title">
+        <div class="icon">🌸</div>
+        <h2>Gyantázás</h2>
+        <p>Selymes bőr, magabiztosan</p>
+      </div>
+      <div class="card">
+        <div class="price-row"><span class="name">Szemöldök</span><span class="price">1.500 Ft</span></div>
+        <div class="price-row"><span class="name">Bajusz</span><span class="price">1.300 Ft</span></div>
+        <div class="price-row"><span class="name">Áll</span><span class="price">1.300 Ft</span></div>
+        <div class="price-row"><span class="name">Hónalj</span><span class="price">1.800 Ft</span></div>
+        <div class="price-row"><span class="name">Kar könyékig</span><span class="price">2.000 Ft</span></div>
+        <div class="price-row"><span class="name">Kar végig</span><span class="price">3.000 Ft</span></div>
+        <div class="price-row"><span class="name">Bikini</span><span class="price">3.500 Ft</span></div>
+        <div class="price-row"><span class="name">Has</span><span class="price">3.500 Ft</span></div>
+        <div class="price-row"><span class="name">Láb térdig</span><span class="price">3.200 Ft</span></div>
+        <div class="price-row"><span class="name">Láb végig</span><span class="price">5.000 Ft</span></div>
+        <div class="price-row"><span class="name">Mellkas</span><span class="price">4.000 Ft</span></div>
+        <div class="price-row"><span class="name">Hát</span><span class="price">4.500 Ft</span></div>
+        <div class="price-row"><span class="name">Fazon teljes</span><span class="price">4.500 Ft</span></div>
+      </div>
+    </section>
+
+    <!-- TINTING -->
+    <section id="tint">
+      <div class="section-title">
+        <div class="icon">🎨</div>
+        <h2>Festések</h2>
+        <p>Kiemeli, ami szép benned!</p>
+      </div>
+      <div class="grid-2">
+        <div class="card" style="text-align:center;">
+          <div style="font-size:1.6rem;">👁️</div>
+          <div style="font-weight:700; margin:6px 0 4px;">Szempilla festés</div>
+          <div style="color:var(--pink-deep); font-weight:800; font-size:1.1rem;">2.000 Ft</div>
+        </div>
+        <div class="card" style="text-align:center;">
+          <div style="font-size:1.6rem;">✏️</div>
+          <div style="font-weight:700; margin:6px 0 4px;">Szemöldök festés</div>
+          <div style="color:var(--pink-deep); font-weight:800; font-size:1.1rem;">2.000 Ft</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TREATMENTS -->
+    <section id="treat" class="bg-alt">
+      <div class="section-title">
+        <div class="icon">✨</div>
+        <h2>Kezeléseim</h2>
+        <p>Szépség, ami belülről ragyog</p>
+      </div>
+      <div class="treat-card">
+        <div class="treat-emoji">🌱</div>
+        <div class="treat-body">
+          <h3>Tini kezelés</h3>
+          <span class="price-tag">9.500 Ft</span>
+          <p>Gyengéd ápolás a fiatal, ragyogó bőrért.</p>
+        </div>
+      </div>
+      <div class="treat-card">
+        <div class="treat-emoji">💎</div>
+        <div class="treat-body">
+          <h3>Nagykezelés <span style="font-weight:400; font-size:0.75rem; color:var(--text-soft);">/tisztítás, masszázs, ultrahang/</span></h3>
+          <span class="price-tag">15.000 Ft</span>
+          <p>Komplett feltöltödés a bőrödnek.</p>
+        </div>
+      </div>
+      <div class="treat-card">
+        <div class="treat-emoji">🤍</div>
+        <div class="treat-body">
+          <h3>Kiskezelés <span style="font-weight:400; font-size:0.75rem; color:var(--text-soft);">/masszázs, ultrahang/</span></h3>
+          <span class="price-tag">10.000 Ft</span>
+          <p>Gyors, hatékony ápolás a ragyogó bőrért.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MASSAGE -->
+    <section id="massage">
+      <div class="section-title">
+        <div class="icon">🤲</div>
+        <h2>Masszázs</h2>
+        <p>Az érintés, ami feltölt</p>
+      </div>
+      <div class="card">
+        <div class="price-row"><span class="name">Arcmasszázs /30 perc/</span><span class="price">4.500 Ft</span></div>
+        <div class="price-row"><span class="name">Arc és dekoltázsmasszázs /30 perc/</span><span class="price">6.000 Ft</span></div>
+      </div>
+    </section>
+
+    <!-- MAKEUP -->
+    <section id="makeup" class="bg-alt">
+      <div class="section-title">
+        <div class="icon">💄</div>
+        <h2>Smink</h2>
+        <p>Ragyogj minden alkalommal!</p>
+      </div>
+      <div class="card">
+        <div class="price-row"><span class="name">Nappali smink</span><span class="price">6.500 Ft</span></div>
+        <div class="price-row"><span class="name">Alkalmi smink</span><span class="price">9.500 Ft</span></div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="kapcsolat" style="padding:10px 0 0;">
+      <div class="contact">
+        <h2>Foglalj időpontot 💕</h2>
+        <p class="sub">Érezd jól magad, légy a legszebb önmagad!</p>
+        <div class="contact-list">
+          <a class="contact-item" href="tel:+36205929777">
+            <div class="ic">📞</div>
+            <div><span class="lbl">Bejelentkezés</span><br><span class="val">06/20 592-9777</span></div>
+          </a>
+          <a class="contact-item" href="https://instagram.com/_anna_fenypont_kozmetika" target="_blank" rel="noopener">
+            <div class="ic">📷</div>
+            <div><span class="lbl">Instagram</span><br><span class="val">_anna_fenypont_kozmetika</span></div>
+          </a>
+          <a class="contact-item" href="https://facebook.com/" target="_blank" rel="noopener">
+            <div class="ic">👍</div>
+            <div><span class="lbl">Facebook</span><br><span class="val">Virágh Anna</span></div>
+          </a>
+          <div class="contact-item">
+            <div class="ic">📍</div>
+            <div><span class="lbl">Cím</span><br><span class="val">9151, Abda, Dózsa utca 28/A</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="footer-note">Készült <span class="heart">♥</span> Anna Fénypont Kozmetika</div>
+
+  <!-- STICKY CTA -->
+  <div class="sticky-cta">
+    <a class="call" href="tel:+36205929777">📞 Hívás most</a>
+    <a class="insta" href="https://instagram.com/_anna_fenypont_kozmetika" target="_blank" rel="noopener">📷 Instagram</a>
+  </div>
+
+</body>
+</html>
